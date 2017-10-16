@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel {{Config::get('database.prefix')}}
                 </div>
 
                 <div class="links">
