@@ -13,9 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('default_login_admin');
 
-Route::get("/Admin/Home", "Admin\DashboardController@index")->name('Dashboard_Home_Admin');;
-Route::get("/Admin/", 'Admin\LoginController@index');
-Route::post("/Admin/login", 'Admin\LoginController@login');
-Route::post("/Admin/register", 'Admin\LoginController@register_user');
+
+
+
+Route::group(['prefix' => 'Admin'], function () {
+    Route::get("/", 'Admin\LoginController@index')->name('Login_Admin');
+    Route::get("/home", "Admin\DashboardController@index")->name('Dashboard_Home_Admin')->middleware('Check_Admin_Login');
+    Route::get("/logout", 'Admin\LoginController@logout')->middleware('Check_Admin_Login');
+    Route::post("/login", 'Admin\LoginController@login');
+    Route::post("/register", 'Admin\LoginController@register_user');
+});
