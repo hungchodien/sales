@@ -20,7 +20,7 @@ class create_data_setup extends Seeder
                     'name' => 'User_'.$i,
                     'email' => 'user_'.$i.'@mymail.com',
                     'password' => bcrypt('123456'),
-                    'idQuyen'=> 0,
+                    'idQuyen'=> 1,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]
@@ -1116,7 +1116,7 @@ class create_data_setup extends Seeder
 
         for($i=1;$i<=100;$i++)
         {
-            DB::table('Comment')->insert(
+            DB::table(Config::get('database.prefix').'Comment')->insert(
                 [
                     'idUser' => rand(1,10),
                     'idTinTuc' => rand(1,100),

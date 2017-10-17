@@ -26,7 +26,10 @@ class CreateTableMigration extends Migration
                 $table->string('Ten')->nullable();
                 $table->string('TenKhongDau')->nullable();
                 $table->integer('Publish')->default(1);
-
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -44,7 +47,10 @@ class CreateTableMigration extends Migration
                 $table->foreign('idTheLoai')->references('id')->on($prefix.'TheLoai');
 
                 $table->integer('Publish')->default(1);
-
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -56,6 +62,10 @@ class CreateTableMigration extends Migration
                 $table->string('slug')->nullable();
 
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -74,6 +84,10 @@ class CreateTableMigration extends Migration
                 $table->foreign('idLoaiTin')->references('id')->on(Config::get('database.prefix').'LoaiTin');
                 $table->bigInteger('parent')->default(0);
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -87,7 +101,10 @@ class CreateTableMigration extends Migration
                 $table->foreign('idTag')->references('id')->on(Config::get('database.prefix').'Tag');
                 $table->integer('idTinTuc')->unsigned();
                 $table->foreign('idTinTuc')->references('id')->on(Config::get('database.prefix').'TinTuc');
-
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -107,6 +124,10 @@ class CreateTableMigration extends Migration
                 $table->foreign('idTinTuc')->references('id')->on(Config::get('database.prefix').'TinTuc');
 
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -157,6 +178,11 @@ class CreateTableMigration extends Migration
                 $table->increments('id');
                 $table->string('Ten')->nullable();
                 $table->bigInteger('Parent')->default(0);
+                $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -175,6 +201,11 @@ class CreateTableMigration extends Migration
 
                 $table->integer('idLoaiSanPham')->unsigned();
                 $table->foreign('idLoaiSanPham')->references('id')->on(Config::get('database.prefix').'LoaiSanPham');
+                $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -188,6 +219,10 @@ class CreateTableMigration extends Migration
                 $table->longText('PaymentInformation')->nullable();
                 $table->string('Security', 16)->nullable();
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -202,6 +237,10 @@ class CreateTableMigration extends Migration
                 $table->integer('idThanhToan')->unsigned();
                 $table->foreign('idThanhToan')->references('id')->on(Config::get('database.prefix').'ThanhToan');
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -215,6 +254,10 @@ class CreateTableMigration extends Migration
                 $table->integer('idSanPham')->unsigned();
                 $table->foreign('idSanPham')->references('id')->on(Config::get('database.prefix').'SanPham');
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }
@@ -227,6 +270,10 @@ class CreateTableMigration extends Migration
                 $table->string('NoiDung')->nullable();
                 $table->string('link')->nullable();
                 $table->integer('Publish')->default(1);
+                $table->string('keywords')->nullable();
+                $table->string('description')->nullable();
+                $table->string('link_mobile')->nullable();
+                $table->string('link_amp')->nullable();
                 $table->timestamps();
             });
         }

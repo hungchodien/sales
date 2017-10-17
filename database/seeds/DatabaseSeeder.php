@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(create_data_setup::class);
+        $this->call(create_data_quyen_user::class);
     }
 }
