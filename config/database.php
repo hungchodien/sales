@@ -32,26 +32,103 @@ return [
     */
     'prefix' => 'jb_',
     'table' => [
-        'tintuc' => 'tintuc',
-        'comment' => 'comment',
-        'customfield' => 'customfield',
-        'donhang' => 'donhang',
-        'loaisanpham' => 'loaisanpham',
-        'loaitin' => 'loaitin',
-        'option' => 'option',
-        'optiontable' => 'optiontable',
-        'quyen' => 'quyen',
-        'sanpham' => 'sanpham',
-        'slide' => 'slide',
-        'sub_donhang_sanpham' => 'sub_donhang_sanpham',
-        'sub_tintuc_tag' => 'sub_tintuc_tag',
-        'tag' => 'tag',
-        'thanhtoan' => 'thanhtoan',
-        'theloai' => 'theloai',
-        'migrations' => 'migrations',
-        'password_resets' => 'password_resets',
-        'users' => 'users'
+        'tintuc' => [
+            'Ten' => 'tintuc',
+            'Slug' => 'tin-tuc',
+            'id' => 1
+        ],
+        'comment' => [
+            'Ten' => 'comment',
+            'Slug' => 'comment',
+            'id' => 2
+        ],
+        'customfield' => [
+            'Ten' => 'customfield',
+            'Slug' => 'custom-field',
+            'id' => 3
+        ],
+        'donhang' => [
+            'Ten' => 'donhang',
+            'Slug' => 'don-hang',
+            'id' => 4
+        ],
+        'loaisanpham' => [
+            'Ten' => 'loaisanpham',
+            'Slug' => 'loai-san-pham',
+            'id' => 5
+        ],
+        'loaitin' => [
+            'Ten' => 'loaitin',
+            'Slug' => 'loai-tin',
+            'id' => 6
+        ],
+        'option' => [
+            'Ten' => 'option',
+            'Slug' => 'option',
+            'id' => 7
+        ],
+        'optiontable' => [
+            'Ten' => 'optiontable',
+            'Slug' => 'option-table',
+            'id' => 8
+        ],
+        'quyen' => [
+            'Ten' => 'quyen',
+            'Slug' => 'quyen',
+            'id' => 9
+        ],
+        'sanpham' => [
+            'Ten' => 'sanpham',
+            'Slug' => 'san-pham',
+            'id' => 10
+        ],
+        'slide' => [
+            'Ten' => 'slide',
+            'Slug' => 'slide',
+            'id' => 11
+        ],
+        'sub_donhang_sanpham' => [
+            'Ten' => 'sub_donhang_sanpham',
+            'Slug' => 'sub-don-hang-san-pham',
+            'id' => 12
+        ],
+        'sub_tintuc_tag' => [
+            'Ten' => 'sub_tintuc_tag',
+            'Slug' => 'sub-tin-tuc-tag',
+            'id' => 13
+        ],
+        'tag' =>  [
+            'Ten' => 'tag',
+            'Slug' => 'tag',
+            'id' => 14
+        ],
+        'thanhtoan' =>  [
+            'Ten' => 'thanhtoan',
+            'Slug' => 'thanh-toan',
+            'id' => 15
+        ],
+        'theloai' => [
+            'Ten' => 'theloai',
+            'Slug' => 'the-loai',
+            'id' => 16
+        ],
+        'migrations' => [
+            'Ten' => 'migrations',
+            'Slug' => 'migrations',
+            'id' => 17
+        ],
+        'password_resets' => [
+            'Ten' => 'password_resets',
+            'Slug' => 'password-resets',
+            'id' => 18
+        ],
+        'users' => [
+            'Ten' => 'users',
+            'Slug' => 'users',
+            'id' => 19
+        ]
     ],
+    'ReloadXML' => 1,
     'connections' => [
 
         'sqlite' => [

@@ -16,25 +16,20 @@ class DashboardController extends Controller
         return view('Admin.dashboard.index', ['data' => $data, 'data_slug_Tin_Tuc' => $data_slug_Tin_Tuc[0]]);
     }
     public function add($slug){
-        ///get slug tin tuc
-        echo "controller : add ";
-        echo $slug;
-        echo "<br>";
-        var_dump(tintuc) ;
         switch ($slug){
-            case tintuc : {
-                echo "<br>đã vào case!! ";
-                echo "<br>đã vào case!! ";
-                echo "<br>đã vào case!! ";
+            case slug_tintuc : {
+                return view('Admin.TinTuc.index');
             }
             break;
         }
     }
     public function edit($slug){
-        ///get slug tin tuc
-        echo "controller : edit (load all)";
-
-        echo $slug;
+        switch ($slug){
+            case slug_tintuc : {
+                return view('Admin.TinTuc.index' , ['data' => '']);
+            }
+            break;
+        }
     }
     private function add_new_TinTuc(){
 

@@ -210,7 +210,7 @@
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" name="password_confirmation" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
@@ -219,8 +219,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <h3>chọn ngôn ngữ mặc định</h3>
+                                            <label class="radio-inline"><input type="radio" value="vi" name="Admin_set_lang" checked>Tiếng Việt</label>
+                                            <label class="radio-inline"><input type="radio" value="en" name="Admin_set_lang">English</label>
+                                            <label class="radio-inline"><input type="radio" value="jp" name="Admin_set_lang">Japan</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
-                            @if(session()->has('message'))
+                            @if(session()->has('message_register'))
                                 <div class="alert alert-success">
                                     {{ session()->get('message_register') }}
                                 </div>

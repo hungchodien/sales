@@ -10,6 +10,6 @@ class Md_OptionTable extends Model
 
 
     public function __construct (){
-        $this->table = "jb_OptionTable";
+        $this->table = optiontable;
     }
 }

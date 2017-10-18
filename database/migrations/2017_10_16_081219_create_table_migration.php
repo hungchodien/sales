@@ -158,6 +158,7 @@ class CreateTableMigration extends Migration
                 $table->string('MetaKey')->nullable();
                 $table->longText('MetaValues')->nullable();
                 $table->integer('idOptionTable')->nullable();
+                $table->bigInteger('post_table')->nullable();
                 $table->bigInteger('parent')->default(0);
                 $table->integer('Publish')->default(1);
                 $table->timestamps();

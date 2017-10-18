@@ -18,7 +18,7 @@
     <link href="{{asset('asset_admin/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('asset_admin/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('asset_admin/sb-admin-2.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="{{asset('asset_admin/morris.css')}}" rel="stylesheet">
@@ -288,10 +288,10 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Post<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('Create_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Tất Cả Tin Tức</a>
+                                <a href="{{ route('Edit_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
                             </li>
                             <li>
-                                <a href="{{ route('Edit_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Thêm mới Tin Tức</a>
+                                <a href="{{ route('Create_News_Admin', slug_tintuc) }}/">Thêm mới Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{route('Login_Admin')}}">Thể Loại</a>
@@ -306,10 +306,10 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Page<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('Create_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Tất Cả Tin Tức</a>
+                                <a href="{{ route('Edit_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
                             </li>
                             <li>
-                                <a href="{{ route('Edit_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Thêm mới Tin Tức</a>
+                                <a href="{{ route('Create_News_Admin', slug_tintuc) }}/">Thêm mới Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{route('Login_Admin')}}">Thể Loại</a>
@@ -416,7 +416,7 @@
 
 
 <!-- Custom Theme JavaScript -->
-<script src="{{asset('asset_admin/sb-admin-2.min.js')}}"></script>
+<script src="{{asset('asset_admin/sb-admin-2.js')}}"></script>
 
 </body>
 

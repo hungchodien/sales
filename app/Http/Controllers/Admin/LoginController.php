@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Md_OptionTable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Md_User;
+use App\Model\Md_CustomField;
+use Config;
 
 class LoginController extends Controller
 {
@@ -50,13 +53,14 @@ class LoginController extends Controller
         ///lấy model user -> add new
         $rules = [
             'email' =>'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|confirmed|min:6'
         ];
         $messages = [
             'email.required' => 'Email là trường bắt buộc',
             'email.email' => 'Email không đúng định dạng',
             'password.required' => 'Mật khẩu là trường bắt buộc',
             'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+            'password.confirmed' => 'xác nhận mật khẩu chưa chính xác'
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -68,18 +72,34 @@ class LoginController extends Controller
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
             $user->idQuyen = 2;
+
+
+
             try{
                 $create = $user->save();
                 if($create){
-                    return redirect()->back()->with('message_register', 'Đăng kí thành công! vui lòng login vào hệ thống');
+                    ///dữ liệu đã lư vào hệ thống lúc này set ngôn ngữ mặc định
+                    /// bảng customfield
+                    return redirect()->back()->with('message_register', 'Đăng kí thành công! vui lòng login vào hệ thống ');
+                    $Md_CustomField = new Md_CustomField();
+                    $Md_CustomField->MetaKey = 'User_Lang';
+                    $Md_CustomField->MetaValues = $request->input('Admin_set_lang');
+                    $Md_CustomField->idOptionTable = Config::get('database.table.tintuc.id');
+                    $Md_CustomField->created_at = date('Y-m-d H:i:s');
+                    $Md_CustomField->updated_at = date('Y-m-d H:i:s');
+                    try{
+                        $Md_CustomField->save();
+                    }catch(\Exception $e){
+                        echo "lỗi ngôn ngữ";
+                        dd($Md_CustomField);
+                        die();
+                    }
                 }else {
                     return redirect()->back()->with('error_register', 'Đăng kí thất bại, hệ thống đang phục hồi, vui lòng thử lại sau ít phút');
                 }
             }catch (\Exception $e){
                 return redirect()->back()->with('error_register', 'Đăng kí thất bại, đã có lỗi hệ thống, vui lòng thử lại sau ít phút');
             }
-
-
         }
 
     }
