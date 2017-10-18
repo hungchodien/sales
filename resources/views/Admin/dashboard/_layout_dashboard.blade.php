@@ -24,7 +24,8 @@
     <link href="{{asset('asset_admin/morris.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{asset('asset_admin/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    {{--//cdn --}}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -284,13 +285,31 @@
                         <a href="{{route('Dashboard_Home_Admin')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Post<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Post<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ url('page') }}">Tất Cả Tin Tức</a>
+                                <a href="{{ route('Create_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Tất Cả Tin Tức</a>
                             </li>
                             <li>
-                                <a href="{{ route('Create_New_Admin', '') }}">Thêm mới Tin Tức</a>
+                                <a href="{{ route('Edit_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Thêm mới Tin Tức</a>
+                            </li>
+                            <li>
+                                <a href="{{route('Login_Admin')}}">Thể Loại</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('page') }}">Loại Tin</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Page<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ route('Create_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Tất Cả Tin Tức</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('Edit_News_Admin', $data_slug_Tin_Tuc->Slug) }}">Thêm mới Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{route('Login_Admin')}}">Thể Loại</a>

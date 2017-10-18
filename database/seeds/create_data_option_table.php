@@ -11,7 +11,7 @@ class create_data_option_table extends Seeder
      */
     public function run()//'Slug'=>changeTitle(),
     {
-        DB::table(Config::get('database.prefix').'OptionTable')->insert(
+        DB::table(Config::get('database.prefix').'OptionTable')->insert([
             [ 'Ten' => Config::get('database.prefix').'comment', 'Slug'=>changeTitle('comment'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
             [ 'Ten' => Config::get('database.prefix').'customfield', 'Slug'=>changeTitle('Custom Field'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
             [ 'Ten' => Config::get('database.prefix').'donhang', 'Slug'=>changeTitle('Đơn Hàng'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
@@ -31,6 +31,6 @@ class create_data_option_table extends Seeder
             [ 'Ten' => 'migrations', 'Slug'=>changeTitle('migrations'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
             [ 'Ten' => 'password_resets', 'Slug'=>changeTitle('password resets'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
             [ 'Ten' => 'users', 'Slug'=>changeTitle('users'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ]
-        );
+        ]);
     }
 }

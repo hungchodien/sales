@@ -31,6 +31,27 @@ return [
     |
     */
     'prefix' => 'jb_',
+    'table' => [
+        'tintuc' => 'tintuc',
+        'comment' => 'comment',
+        'customfield' => 'customfield',
+        'donhang' => 'donhang',
+        'loaisanpham' => 'loaisanpham',
+        'loaitin' => 'loaitin',
+        'option' => 'option',
+        'optiontable' => 'optiontable',
+        'quyen' => 'quyen',
+        'sanpham' => 'sanpham',
+        'slide' => 'slide',
+        'sub_donhang_sanpham' => 'sub_donhang_sanpham',
+        'sub_tintuc_tag' => 'sub_tintuc_tag',
+        'tag' => 'tag',
+        'thanhtoan' => 'thanhtoan',
+        'theloai' => 'theloai',
+        'migrations' => 'migrations',
+        'password_resets' => 'password_resets',
+        'users' => 'users'
+    ],
     'connections' => [
 
         'sqlite' => [
