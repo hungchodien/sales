@@ -8,7 +8,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{{Lang::get('admin.Title_Tin_Tuc)}}</h1>
+                <h1 class="page-header">Tất Cả Tin Tức</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>

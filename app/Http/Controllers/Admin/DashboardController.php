@@ -8,25 +8,20 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     public function index(){
-        /// load hết tất cả data
-        $data = Md_OptionTable::all();
-        $data_slug_Tin_Tuc = Md_OptionTable::where('Ten' , "jb_tintuc")->get();
-
-
-        return view('Admin.dashboard.index', ['data' => $data, 'data_slug_Tin_Tuc' => $data_slug_Tin_Tuc[0]]);
+        return view('Admin.dashboard.index');
     }
     public function add($slug){
         switch ($slug){
             case slug_tintuc : {
-                return view('Admin.TinTuc.index');
+                return view('Admin.TinTuc.add');
             }
             break;
         }
     }
-    public function edit($slug){
+    public function load($slug){
         switch ($slug){
             case slug_tintuc : {
-                return view('Admin.TinTuc.index' , ['data' => '']);
+                return view('Admin.TinTuc.index' );
             }
             break;
         }

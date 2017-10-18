@@ -26,5 +26,5 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::post("/register", 'Admin\LoginController@register_user');
 
     Route::get("new-post/{slug}", "Admin\DashboardController@add")->name('Create_News_Admin');
-    Route::get("edit/{slug}", "Admin\DashboardController@edit")->name('Edit_News_Admin');
+    Route::get("load/{slug}", "Admin\DashboardController@load")->name('Load_News_Admin');
 });

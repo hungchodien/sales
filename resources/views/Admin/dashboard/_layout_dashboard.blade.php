@@ -288,16 +288,16 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Post<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('Edit_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
+                                <a href="{{ route('Load_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{ route('Create_News_Admin', slug_tintuc) }}/">Thêm mới Tin Tức</a>
                             </li>
                             <li>
-                                <a href="{{route('Login_Admin')}}">Thể Loại</a>
+                                <a href="{{ url('') }}">Thể Loại</a>
                             </li>
                             <li>
-                                <a href="{{ url('page') }}">Loại Tin</a>
+                                <a href="{{ url('') }}">Loại Tin</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -306,16 +306,16 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Page<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('Edit_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
+                                <a href="{{ route('Load_News_Admin', slug_tintuc) }}/">Tất Cả Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{ route('Create_News_Admin', slug_tintuc) }}/">Thêm mới Tin Tức</a>
                             </li>
                             <li>
-                                <a href="{{route('Login_Admin')}}">Thể Loại</a>
+                                <a href="{{ url('') }}">Thể Loại</a>
                             </li>
                             <li>
-                                <a href="{{ url('page') }}">Loại Tin</a>
+                                <a href="{{ url('') }}">Loại Tin</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -418,6 +418,9 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('asset_admin/sb-admin-2.js')}}"></script>
 
+
+
+@yield('Script_function')
 </body>
 
 </html>

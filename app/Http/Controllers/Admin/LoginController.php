@@ -18,6 +18,8 @@ class LoginController extends Controller
 //        $this->middleware('LoginAdmin');
 //    }
     public function index(){
+        if(Auth::check())
+            return redirect()->route('Dashboard_Home_Admin');
         return view('Admin.index');
     }
     public function login(Request $request){
@@ -72,27 +74,23 @@ class LoginController extends Controller
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
             $user->idQuyen = 2;
-
-
-
             try{
                 $create = $user->save();
                 if($create){
                     ///dữ liệu đã lư vào hệ thống lúc này set ngôn ngữ mặc định
                     /// bảng customfield
-                    return redirect()->back()->with('message_register', 'Đăng kí thành công! vui lòng login vào hệ thống ');
-                    $Md_CustomField = new Md_CustomField();
-                    $Md_CustomField->MetaKey = 'User_Lang';
-                    $Md_CustomField->MetaValues = $request->input('Admin_set_lang');
-                    $Md_CustomField->idOptionTable = Config::get('database.table.tintuc.id');
-                    $Md_CustomField->created_at = date('Y-m-d H:i:s');
-                    $Md_CustomField->updated_at = date('Y-m-d H:i:s');
                     try{
+                        $Md_CustomField = new Md_CustomField();
+                        $Md_CustomField->MetaKey = 'UserLang';
+                        $Md_CustomField->MetaValues = $request->input('Admin_set_lang');
+                        $Md_CustomField->idOptionTable = Config::get('database.table.users.id');
+                        $Md_CustomField->post_table = $user->id;
+                        $Md_CustomField->created_at = date('Y-m-d H:i:s');
+                        $Md_CustomField->updated_at = date('Y-m-d H:i:s');
                         $Md_CustomField->save();
+                        return redirect()->back()->with('message_register', 'Đăng kí thành công! vui lòng login vào hệ thống ');
                     }catch(\Exception $e){
-                        echo "lỗi ngôn ngữ";
-                        dd($Md_CustomField);
-                        die();
+                        return redirect()->back()->with('error_register', 'Đăng kí thất bại, đã có lỗi ngôn ngữ trong hệ thống');
                     }
                 }else {
                     return redirect()->back()->with('error_register', 'Đăng kí thất bại, hệ thống đang phục hồi, vui lòng thử lại sau ít phút');
