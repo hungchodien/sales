@@ -287,7 +287,10 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Post<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ url('page') }}">Tin Tức</a>
+                                <a href="{{ url('page') }}">Tất Cả Tin Tức</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('Create_New_Admin', '') }}">Thêm mới Tin Tức</a>
                             </li>
                             <li>
                                 <a href="{{route('Login_Admin')}}">Thể Loại</a>

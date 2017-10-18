@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(create_data_setup::class);
         $this->call(create_data_quyen_user::class);
+        $this->call(create_data_option_table::class);
     }
 }

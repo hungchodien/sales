@@ -19,7 +19,7 @@ class create_data_setup extends Seeder
                 [
                     'name' => 'User_'.$i,
                     'email' => 'user_'.$i.'@mymail.com',
-                    'password' => bcrypt('123456'),
+                    'password' => bcrypt('123456789'),
                     'idQuyen'=> 1,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
@@ -29,9 +29,9 @@ class create_data_setup extends Seeder
         ///user supper admin
         DB::table('Users')->insert(
             [
-                'name' => 'User_11',
+                'name' => 'Trương thanh hùng',
                 'email' => 'hungtt@hungtt.com',
-                'password' => bcrypt('123456'),
+                'password' => bcrypt('123456789'),
                 'idQuyen'=> 5,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

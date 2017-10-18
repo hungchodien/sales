@@ -146,6 +146,7 @@ class CreateTableMigration extends Migration
             Schema::create($prefix.'OptionTable', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('Ten')->nullable();
+                $table->string('Slug')->nullable();
                 $table->integer('Publish')->default(1);
                 $table->timestamps();
             });
