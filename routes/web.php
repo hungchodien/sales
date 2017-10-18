@@ -24,4 +24,7 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::get("/logout", 'Admin\LoginController@logout')->middleware('Check_Admin_Login');
     Route::post("/login", 'Admin\LoginController@login');
     Route::post("/register", 'Admin\LoginController@register_user');
+    Route::group(['prefix' => 'Admin'], function () {
+        Route::get("/", 'Admin\LoginController@index')->name('Login_Admin');
+    });
 });

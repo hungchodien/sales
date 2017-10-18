@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class TinTucController extends Controller
 {
     public function index(){
-        return view('Admin.dashboard.index');
+
     }
 }
