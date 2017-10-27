@@ -12,7 +12,8 @@
     <title>jbh | @yield('title_dashboard_admin')</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('asset_admin/bootstrap.min.css')}}" rel="stylesheet">
+    {{--<link href="{{asset('asset_admin/bootstrap.min.css')}}" rel="stylesheet">--}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- MetisMenu CSS -->
     <link href="{{asset('asset_admin/metisMenu.min.css')}}" rel="stylesheet">
@@ -33,6 +34,25 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{{asset('asset_admin/jquery.min.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{asset('asset_admin/bootstrap.min.js')}}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{asset('asset_admin/metisMenu.min.js')}}"></script>
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{asset('asset_admin/sb-admin-2.js')}}"></script>
+    @yield('css_custom_page')
+
+
+    @yield('Script_function')
+
 
 </head>
 
@@ -403,24 +423,6 @@
     @yield('content_dashboard_admin')
 
 </div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="{{asset('asset_admin/jquery.min.js')}}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{asset('asset_admin/bootstrap.min.js')}}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{asset('asset_admin/metisMenu.min.js')}}"></script>
-
-
-<!-- Custom Theme JavaScript -->
-<script src="{{asset('asset_admin/sb-admin-2.js')}}"></script>
-
-
-
-@yield('Script_function')
 </body>
 
 </html>

@@ -25,6 +25,14 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::post("/login", 'Admin\LoginController@login');
     Route::post("/register", 'Admin\LoginController@register_user');
 
-    Route::get("new-post/{slug}", "Admin\DashboardController@add")->name('Create_News_Admin');
+    Route::get("new-post/{slug}", "Admin\DashboardController@add")->name('Create_News_Admin')->middleware('Check_Admin_Login');
     Route::get("load/{slug}", "Admin\DashboardController@load")->name('Load_News_Admin');
+
+    Route::post('Save/{slug}','Admin\DashboardController@save')->name('Save_News_Admin');
+    Route::get('Edit/{slug}/{id}','Admin\DashboardController@edit')->name('Edit_News_Admin');
+});
+Route::group(['prefix' => 'Ajax'], function () {
+    Route::get("/LoaiTinCuaTheLoai", 'Admin\TinTucController@LoaiTinCuaTheLoai')->name('Ajax_Load_LoaiTin_Theo_TheLoai');
+    Route::get("/TheLoaiTheoLoaiTin", 'Admin\TinTucController@TheLoaiTheoLoaiTin')->name('Ajax_Load_TheLoai_Theo_LoaiTin');
+    Route::post("/insertNewTag", 'Admin\TinTucController@insertNewTag')->name('Ajax_insertNewTag');
 });

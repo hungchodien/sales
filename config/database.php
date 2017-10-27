@@ -52,49 +52,49 @@ return [
             'Slug' => 'don-hang',
             'id' => 4
         ],
+        'join' => [
+            'Ten' => 'join',
+            'Slug' => 'join',
+            'id' => 5
+        ],
         'loaisanpham' => [
             'Ten' => 'loaisanpham',
             'Slug' => 'loai-san-pham',
-            'id' => 5
+            'id' => 6
         ],
         'loaitin' => [
             'Ten' => 'loaitin',
             'Slug' => 'loai-tin',
-            'id' => 6
+            'id' => 7
         ],
         'option' => [
             'Ten' => 'option',
             'Slug' => 'option',
-            'id' => 7
+            'id' => 8
         ],
         'optiontable' => [
             'Ten' => 'optiontable',
             'Slug' => 'option-table',
-            'id' => 8
+            'id' => 9
         ],
         'quyen' => [
             'Ten' => 'quyen',
             'Slug' => 'quyen',
-            'id' => 9
+            'id' => 10
         ],
         'sanpham' => [
             'Ten' => 'sanpham',
             'Slug' => 'san-pham',
-            'id' => 10
+            'id' => 11
         ],
         'slide' => [
             'Ten' => 'slide',
             'Slug' => 'slide',
-            'id' => 11
+            'id' => 12
         ],
         'sub_donhang_sanpham' => [
             'Ten' => 'sub_donhang_sanpham',
             'Slug' => 'sub-don-hang-san-pham',
-            'id' => 12
-        ],
-        'sub_tintuc_tag' => [
-            'Ten' => 'sub_tintuc_tag',
-            'Slug' => 'sub-tin-tuc-tag',
             'id' => 13
         ],
         'tag' =>  [

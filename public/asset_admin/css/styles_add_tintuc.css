@@ -1,0 +1,25 @@
+.thumbnail_output{
+    padding: 3%;
+    margin: 0 auto;
+    text-align: center;
+}
+.thumbnail_output img{
+    max-width: 100%;
+}
+.btn_custom_thumbnail{
+    display: block;
+    text-align: center;
+}
+.center-label{
+    text-align: center;
+}
+textarea{
+    resize:vertical;
+}
+.list_input input{
+    margin: 2px 0;
+}
+
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+    position: relative;
+}
