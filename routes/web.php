@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 
 
+
 Route::group(['prefix' => 'Admin'], function () {
     Route::get("/", 'Admin\LoginController@index')->name('Login_Admin');
     Route::get("/home", "Admin\DashboardController@index")->name('Dashboard_Home_Admin')->middleware('Check_Admin_Login');
