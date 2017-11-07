@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Md_TinTuc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Md_LoaiTin;
@@ -82,6 +83,23 @@ class TinTucController extends Controller
             'status' => 'ok',
             'tag_new' => $all_Tag_view_arr,
             'tage_new_html' => $stringOptionTagNew
+        ];
+        return response()->json($response, 200);
+    }
+    function Delete($id){
+        $md_tin = new Md_TinTuc();
+        $kq = $md_tin->find($id)->delete();
+        $response = [
+            'status' => $kq
+        ];
+        return response()->json($response, 200);
+    }
+    function Update(Request $request){
+        $argc = $request->input('id');
+        $md_tin = new Md_TinTuc();
+        $md_tin->whereIn('id', $argc)->update(['Publish' => 0]);
+        $response = [
+            'status' => "ok"
         ];
         return response()->json($response, 200);
     }

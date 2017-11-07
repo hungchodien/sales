@@ -22,13 +22,20 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Thêm Mới Tin Tức</h1>
+                <h1 class="page-header">
+                    @if(isset($data['type']))
+                        @if($data['type'] ==='add')
+                            {{'Thêm Mới Tin Tức'}}
+                        @else
+                            {{'Chỉnh sửa thông tin'}}
+                        @endif
+                    @endif
+                </h1>
             </div>
 
             <!-- /.col-lg-12 -->
         </div>
-
-        <form  method="POST" action="{{route('Save_News_Admin', slug_tintuc)}}">
+        <form  method="POST" action="@if(isset($data['type']) && $data['type']== 'add') {{route('Save_News_Admin', slug_tintuc)}} @endif">
         {{ csrf_field() }}
             <!-- /.row -->
             @foreach ($errors->all() as $error)
@@ -40,22 +47,23 @@
                 <div class="col-lg-9">
                     <div class="form-group">
                         <label for="TieuDe">tiêu đề:</label>
-                        <input type="text" class="form-control " id="TieuDe" name="TieuDe" value="{{ old('TieuDe') }}" onfocusout="create_TieuDeKhongDau(this.value,'TieuDeKhongDau')">
+                        <input type="text" class="form-control " id="TieuDe" name="TieuDe"
+                               value="@if(isset($data['type']) && $data['type']== 'edit') {{$data['DataTinTuc']->TieuDe}} @else {{old('TieuDe')}} @endif"
+                               onfocusout="create_TieuDeKhongDau(this.value,'TieuDeKhongDau')">
                     </div>
                     <div class="form-group">
                         <label for="TieuDeKhongDau">tiêu đề không dấu(slug):</label>
-                        <input type="text" class="form-control" id="TieuDeKhongDau" name="TieuDeKhongDau" value="{{ old('TieuDeKhongDau') }}">
+                        <input type="text" class="form-control" id="TieuDeKhongDau" name="TieuDeKhongDau"
+                               value="@if(isset($data['type']) && $data['type']== 'edit') {{$data['DataTinTuc']->TieuDeKhongDau}} @else {{ old('TieuDeKhongDau') }} @endif">
                     </div>
                     <div class="form-group">
                         <label for="editor1">Nội dung:</label>
-                        <textarea name="NoiDung" class="form-control " id="editor1" >{{{ old('NoiDung') }}}</textarea>
+                        <textarea name="NoiDung" class="form-control " id="editor1" > @if(isset($data['type']) && $data['type']== 'edit') {{$data['DataTinTuc']->NoiDung}} @else {{ old('NoiDung') }} @endif </textarea>
                         <script> CKEDITOR.replace( 'editor1'); </script>
                     </div>
                     <div class="form-group">
                         <label for="comment">Tóm Tắt:</label>
-                        <textarea class="form-control" rows="5" id="comment" name="TomTat" >{{{ old('TomTat') }}}</textarea>
-
-
+                        <textarea class="form-control" rows="5" id="comment" name="TomTat" >@if(isset($data['type']) && $data['type']== 'edit') {{$data['DataTinTuc']->TomTat}} @else {{ old('TomTat') }} @endif </textarea>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><label for="Hinh">Các custom Field (meta key : $slug---hungtt-$name):</label></div>
@@ -122,9 +130,11 @@
                             <div class="form-group">
                                 <label for="the_loai_chinh">Chọn Thể Loại Chính:</label>
                                 <select class="form-control" id="the_loai_chinh" name="the-loai-chinh" onchange="ajax_LoaiTinTheoTheLoai(this, '{{Route("Ajax_Load_LoaiTin_Theo_TheLoai")}}', 'id_Loaitin')">
-                                @foreach ($data['theloai'] as $key => $value)
+                                @if(isset($data['type']) && $data['type']== 'add')
+                                    @foreach ($data['theloai'] as $key => $value)
                                         <option value="{{$value['id']}}">{{$value['Ten']}}</option>
-                                @endforeach
+                                    @endforeach
+                                @endif
                                 </select>
                                 <script>
                                     function ajax_LoaiTinTheoTheLoai(a,o,l){var n=$(a).val();console.log(n),$.ajax({type:"GET",url:o,dataType:"json",data:{id:n},success:function(a){console.log(a),$("#"+l).html(a.html)}})}
@@ -133,9 +143,11 @@
                             <div class="form-group">
                                 <label for="the_loai_phu">Chọn Các Thể Loại Phụ:</label>
                                 <select id="the_loai_phu" class="selectpicker" multiple name="the-loai-phu[]" title="Chưa Có Thể loại Phụ được chọn">
-                                    @foreach ($data['theloai'] as $key => $value)
-                                        <option value="{{$value['id']}}">{{$value['Ten']}}</option>
-                                    @endforeach
+                                    @if(isset($data['type']) && $data['type']== 'add')
+                                        @foreach ($data['theloai'] as $key => $value)
+                                            <option value="{{$value['id']}}">{{$value['Ten']}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -146,17 +158,21 @@
                             <div class="form-group">
                                 <label for="id_Loaitin">Chọn Loại Tin Chính:</label>
                                 <select class="form-control" id="id_Loaitin" name="loai-tin-chinh">
-                                    @foreach ($data['loaitin'] as $key => $value)
-                                        <option value="{{$value['id']}}">{{$value['Ten']}}</option>
-                                    @endforeach
+                                    @if(isset($data['type']) && $data['type']== 'add')
+                                        @foreach ($data['loaitin'] as $key => $value)
+                                            <option value="{{$value['id']}}">{{$value['Ten']}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="sel1">Chọn Các Loại Tin Phụ:</label>
                                 <select class="selectpicker" multiple name="loai-tin-phu[]" title="chưa có loại tin được chọn">
-                                    @foreach ($data['loaitin'] as $key => $value)
-                                        <option value="{{$value['id']}}">{{$value['Ten']}}</option>
-                                    @endforeach
+                                    @if(isset($data['type']) && $data['type']== 'add')
+                                        @foreach ($data['loaitin'] as $key => $value)
+                                            <option value="{{$value['id']}}">{{$value['Ten']}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -167,9 +183,11 @@
                             <div class="form-group">
                                 <label for="sel1">Chọn Loại Tag Chính:</label>
                                 <select id="the_tag" name="the-tag[]" class="selectpicker" multiple title="chưa có loại tag được chọn">
-                                    @foreach ($data['tag'] as $key => $value)
-                                        <option value="{{$value['id']}}">{{$value['Ten']}}</option>
-                                    @endforeach
+                                    @if(isset($data['type']) && $data['type']== 'add')
+                                        @foreach ($data['tag'] as $key => $value)
+                                            <option value="{{$value['id']}}">{{$value['Ten']}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="TagNew">
@@ -203,17 +221,10 @@
                                             if(ten!==""){
                                                 ObjTag['Ten'+i] = ten;
                                                 ObjTag['slug'+i] = string_to_slug(ten);
-                                                //var OneObjTag = {Ten: ten, slug:string_to_slug(ten)};
-                                                //OneObjTag['Ten'] = ten;
-                                                //OneObjTag['slug'] = string_to_slug(ten);//{Ten: ten, slug:string_to_slug(ten)};
-                                                //ObjTag.push(OneObjTag);
                                             }else {
                                                 ObjTag['number_page'] -- ;
                                             }
                                         }
-                                        //console.log(ObjTag);
-                                        ///nếu array có values thì mới làm
-                                        /// ajax
                                         if (ObjTag.length !== 0) {
                                             $.ajaxSetup({
                                                 headers: {
@@ -246,12 +257,15 @@
                         <div class="panel-heading"><label for="Hinh">Hình Thumbnail:</label></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <input type="text" class="form-control label_id_select_popup_popup_1_button" id="Hinh" name="Hinh">
-                                <div id="output" class="thumbnail_output"></div>
+                                <input type="text" class="form-control label_id_select_popup_popup_1_button"
+                                       id="Hinh" name="Hinh"
+                                       value="@if(isset($data['type']) && $data['type']== 'edit') {{$data['DataTinTuc']->Hinh}} @else {{ old('Hinh') }} @endif">
+                                <div id="output" class="thumbnail_output">
+                                    @if(isset($data['type']) && $data['type']== 'edit') <img src="{{asset($data['DataTinTuc']->Hinh)}}"/> @else <img src="{{ asset(old('Hinh')) }}"/> @endif
+                                </div>
                             </div>
                             <div class="btn_custom_thumbnail">
                                 <a id="popup_1_button" class="btn btn-default" >chọn hình</a>
-
                             </div>
                         </div>
                     </div>
@@ -273,7 +287,7 @@
                             var output = document.getElementById( 'output' );
                             output.innerHTML = "<img src='" + file.getUrl() + "' alt = '" + file.get( 'name' ) + "' />";
                             var Hinh = document.getElementById("Hinh");
-                            Hinh.value = file.get( 'name' ) + "";
+                            Hinh.value = file.getUrl() + "";
                         } );
                     }
                 },
@@ -285,7 +299,7 @@
                         finder.on( 'files:choose', function( evt ) {
                             var file = evt.data.files.first();
                             var Hinh = document.getElementById("seo_hinh");
-                            Hinh.value = file.get( 'name' ) + "";
+                            Hinh.value = file.getUrl() + "";
                         } );
                     }
                 },
@@ -319,17 +333,14 @@
         ].join( ',' );
 
         document.getElementById( 'popup_1_button' ).onclick = function() {
-            // Note that config ID is passed in configId parameter
             window.open( '/ckfinder/ckfinder.html?popup=1&configId=popup-1-config', 'CKFinderPopup1', popupWindowOptions );
         };
-
         document.getElementById( 'popup_2_seo_hinh' ).onclick = function() {
             window.open( '/ckfinder/ckfinder.html?popup=1&configId=popup-2-config', 'CKFinderPopup2', popupWindowOptions );
-        }
-
+        };
         document.getElementById( 'popup_3_seo_hinh' ).onclick = function() {
             window.open( '/ckfinder/ckfinder.html?popup=1&configId=popup-3-config', 'CKFinderPopup3', popupWindowOptions );
-        }
+        };
     </script>
 @endsection
 

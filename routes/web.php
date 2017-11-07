@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('default_login_admin');
 
-
-
-
-
 Route::group(['prefix' => 'Admin'], function () {
     Route::get("/", 'Admin\LoginController@index')->name('Login_Admin');
     Route::get("/home", "Admin\DashboardController@index")->name('Dashboard_Home_Admin')->middleware('Check_Admin_Login');
@@ -36,4 +32,7 @@ Route::group(['prefix' => 'Ajax'], function () {
     Route::get("/LoaiTinCuaTheLoai", 'Admin\TinTucController@LoaiTinCuaTheLoai')->name('Ajax_Load_LoaiTin_Theo_TheLoai');
     Route::get("/TheLoaiTheoLoaiTin", 'Admin\TinTucController@TheLoaiTheoLoaiTin')->name('Ajax_Load_TheLoai_Theo_LoaiTin');
     Route::post("/insertNewTag", 'Admin\TinTucController@insertNewTag')->name('Ajax_insertNewTag');
+    Route::get('/Delete/{id}','Admin\TinTucController@Delete')->name('DeleteRecord');
+
+    Route::post('/UpdateStatusOff','Admin\TinTucController@Update')->name('UpdateStatusOff');
 });

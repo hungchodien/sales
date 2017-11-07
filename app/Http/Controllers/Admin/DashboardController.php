@@ -19,67 +19,82 @@ class DashboardController extends Controller
     public function index(){
         return view('Admin.dashboard.index');
     }
-    public function add($slug){
-        $data_return = array();
+    public function load($slug){
         switch ($slug){
             case slug_tintuc : {
-                ///load tất cả thể loại để đưa ra trang view
-                $all_theloai = Md_TheLoai::All();
-                $all_theloai_view = array();
-                foreach ($all_theloai as $key => $value){
-                    $all_theloai_view[$key]['id'] = $value['id'];
-                    $all_theloai_view[$key]['Ten'] = $value['Ten'];
-                    $all_theloai_view[$key]['Publish'] = $value['Publish'];
-                }
-                /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
-                $data_return['theloai'] = $all_theloai_view;
+                ///query tin tức lên
+                $Md_TinTuc = new Md_TinTuc();
+                $md_tintucAll = $Md_TinTuc->orderBy('id', 'DESC')->paginate(15);
+                $data = array();
+                $data["Tintuc25Record"] = $md_tintucAll;
+                return view('Admin.TinTuc.index', ['data' => $data] );
+            }
+                break;
+        }
+    }
+    private function add_edit_TinTuc($data_return, $slug , $id){
+        if($id === null )
+            $data_return['type'] = 'add';
+        else
+            $data_return['type'] = 'edit';
+        switch ($slug){
+            case slug_tintuc : {
+                if($data_return['type'] === 'add'){
+                    ///load tất cả thể loại để đưa ra trang view
+                    $all_theloai = Md_TheLoai::All();
+                    $all_theloai_view = array();
+                    foreach ($all_theloai as $key => $value){
+                        $all_theloai_view[$key]['id'] = $value['id'];
+                        $all_theloai_view[$key]['Ten'] = $value['Ten'];
+                        $all_theloai_view[$key]['Publish'] = $value['Publish'];
+                    }
+                    /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
+                    $data_return['theloai'] = $all_theloai_view;
 
-                ///load tất cả thể loại để đưa ra trang view
-                $all_loaitin = Md_LoaiTin::All();
-                $all_loaitin_view = array();
-                foreach ($all_loaitin as $key => $value){
-                    $all_loaitin_view[$key]['id'] = $value['id'];
-                    $all_loaitin_view[$key]['Ten'] = $value['Ten'];
-                    $all_loaitin_view[$key]['Publish'] = $value['Publish'];
-                }
-                /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
-                $data_return['loaitin'] = $all_loaitin_view;
+                    ///load tất cả thể loại để đưa ra trang view
+                    $all_loaitin = Md_LoaiTin::All();
+                    $all_loaitin_view = array();
+                    foreach ($all_loaitin as $key => $value){
+                        $all_loaitin_view[$key]['id'] = $value['id'];
+                        $all_loaitin_view[$key]['Ten'] = $value['Ten'];
+                        $all_loaitin_view[$key]['Publish'] = $value['Publish'];
+                    }
+                    /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
+                    $data_return['loaitin'] = $all_loaitin_view;
 
-                ///load tất cả thể loại để đưa ra trang view
-                $Md_Tag = new Md_Tag();
-                $all_Tag_view = $Md_Tag->where(function ($query) {
+                    ///load tất cả thể loại để đưa ra trang view
+                    $Md_Tag = new Md_Tag();
+                    $all_Tag_view = $Md_Tag->where(function ($query) {
                         $query->where('Publish','1');
                     })->where(function ($query) {
                         $query->where('Ten','!=', "''");
                     })->get();
-                $all_Tag_view_arr = array();
-                foreach ($all_Tag_view as $key => $value){
-                    $all_Tag_view_arr[$key]['id'] = $value['id'];
-                    $all_Tag_view_arr[$key]['Ten'] = $value['Ten'];
-                    $all_Tag_view_arr[$key]['Publish'] = $value['Publish'];
+                    $all_Tag_view_arr = array();
+                    foreach ($all_Tag_view as $key => $value){
+                        $all_Tag_view_arr[$key]['id'] = $value['id'];
+                        $all_Tag_view_arr[$key]['Ten'] = $value['Ten'];
+                        $all_Tag_view_arr[$key]['Publish'] = $value['Publish'];
+                    }
+                    /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
+                    $data_return['tag'] = $all_Tag_view_arr;
+                }else {
+                    $Md_TinTuc = Md_TinTuc::find($id);
+                    $data_return['DataTinTuc'] = $Md_TinTuc;
                 }
-                /* 0 => array:3 [ "id" => 1 "Ten" => "Xã Hội" "Publish" => 1 ]*/
-
-
-                $data_return['tag'] = $all_Tag_view_arr;
-                return view('Admin.TinTuc.add', ['data'=> $data_return]);
+                return $data_return;
             }
                 break;
         }
-    }
-    public function load($slug){
-        switch ($slug){
-            case slug_tintuc : {
-                return view('Admin.TinTuc.index' );
-            }
-                break;
-        }
-    }
-    private function add_new_TinTuc(){
 
+    }
+
+    public function add($slug){
+        $data_return = array();
+        return view('Admin.TinTuc.add', ['data' => $this->add_edit_TinTuc($data_return , $slug , null)]);
     }
     public function edit($slug, $id){
-        return "trang edit";
+        $data_return = array();
+        return view('Admin.TinTuc.add', ['data' => $this->add_edit_TinTuc($data_return , $slug , $id)]);
     }
     public function save(Request $request , $slug){
         $status = ''; $message = '';
@@ -184,7 +199,6 @@ class DashboardController extends Controller
                                     }
                                 }
                             }
-
                         }
                         if($id){
                             ///loai-tin-chinh
@@ -211,6 +225,21 @@ class DashboardController extends Controller
                                 $status = 'error thể loại';
                                 $message = $e;
                             }
+
+                        }
+                        if($id){
+                            $md_customfield = new Md_CustomField();
+                            $md_customfield->MetaKey = 'the-loai-phu';
+                            $md_customfield->MetaValues =  serialize($request->input('the-loai-phu'));
+                            $md_customfield->idOptionTable = Id_tintuc;
+                            $md_customfield->post_table = $id;
+                            try{$md_customfield-> save();}catch (\Exception $e){$status = 'error customfield the-loai-phu'; $message = $e;}
+                            $md_customfield = new Md_CustomField();
+                            $md_customfield->MetaKey = 'loai-tin-phu';
+                            $md_customfield->MetaValues =  serialize($request->input('loai-tin-phu'));
+                            $md_customfield->idOptionTable = Id_tintuc;
+                            $md_customfield->post_table = $id;
+                            try{$md_customfield-> save();}catch (\Exception $e){$status = 'error customfield loai-tin-phu'; $message = $e;}
 
                         }
 

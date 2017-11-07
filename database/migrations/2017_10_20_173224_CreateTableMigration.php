@@ -21,6 +21,15 @@ class CreateTableMigration extends Migration
 
         $prefix = Config::get('database.prefix');
 
+
+        if (!Schema::hasTable($prefix.'Message')) {
+            Schema::create($prefix.'Message', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('TacGia')->nullable();
+                $table->string('TinNhan')->nullable();
+                $table->timestamps();
+            });
+        }
         if (!Schema::hasTable($prefix.'Join')) {
             Schema::create($prefix.'Join', function (Blueprint $table) {
                 $table->increments('id');

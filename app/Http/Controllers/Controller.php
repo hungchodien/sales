@@ -23,6 +23,7 @@ class Controller extends BaseController
         define("join", Config::get('database.prefix').Config::get('database.table.join.Ten') , true);
         define("loaisanpham", Config::get('database.prefix').Config::get('database.table.loaisanpham.Ten') , true);
         define("loaitin", Config::get('database.prefix').Config::get('database.table.loaitin.Ten') , true);
+        define("message", Config::get('database.prefix').Config::get('database.table.message.Ten') , true);
         define("option", Config::get('database.prefix').Config::get('database.table.option.Ten') , true);
         define("optiontable", Config::get('database.prefix').Config::get('database.table.optiontable.Ten') , true);
         define("quyen", Config::get('database.prefix').Config::get('database.table.quyen.Ten') , true);
@@ -44,6 +45,7 @@ class Controller extends BaseController
         define("Slug_join", Config::get('database.prefix').Config::get('database.table.join.Slug') , true);
         define("Slug_loaisanpham", Config::get('database.table.loaisanpham.Slug') , true);
         define("Slug_loaitin", Config::get('database.table.loaitin.Slug') , true);
+        define("Slug_message", Config::get('database.table.message.Slug') , true);
         define("Slug_option", Config::get('database.table.option.Slug') , true);
         define("Slug_optiontable", Config::get('database.table.optiontable.Slug') , true);
         define("Slug_quyen", Config::get('database.table.quyen.Slug') , true);

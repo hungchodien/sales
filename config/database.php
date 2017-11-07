@@ -67,65 +67,70 @@ return [
             'Slug' => 'loai-tin',
             'id' => 7
         ],
+        'message' => [
+            'Ten' => 'message',
+            'Slug' => 'message',
+            'id' => 8
+        ],
         'option' => [
             'Ten' => 'option',
             'Slug' => 'option',
-            'id' => 8
+            'id' => 9
         ],
         'optiontable' => [
             'Ten' => 'optiontable',
             'Slug' => 'option-table',
-            'id' => 9
+            'id' => 10
         ],
         'quyen' => [
             'Ten' => 'quyen',
             'Slug' => 'quyen',
-            'id' => 10
+            'id' => 11
         ],
         'sanpham' => [
             'Ten' => 'sanpham',
             'Slug' => 'san-pham',
-            'id' => 11
+            'id' => 12
         ],
         'slide' => [
             'Ten' => 'slide',
             'Slug' => 'slide',
-            'id' => 12
+            'id' => 13
         ],
         'sub_donhang_sanpham' => [
             'Ten' => 'sub_donhang_sanpham',
             'Slug' => 'sub-don-hang-san-pham',
-            'id' => 13
+            'id' => 14
         ],
         'tag' =>  [
             'Ten' => 'tag',
             'Slug' => 'tag',
-            'id' => 14
+            'id' => 15
         ],
         'thanhtoan' =>  [
             'Ten' => 'thanhtoan',
             'Slug' => 'thanh-toan',
-            'id' => 15
+            'id' => 16
         ],
         'theloai' => [
             'Ten' => 'theloai',
             'Slug' => 'the-loai',
-            'id' => 16
+            'id' => 17
         ],
         'migrations' => [
             'Ten' => 'migrations',
             'Slug' => 'migrations',
-            'id' => 17
+            'id' => 18
         ],
         'password_resets' => [
             'Ten' => 'password_resets',
             'Slug' => 'password-resets',
-            'id' => 18
+            'id' => 19
         ],
         'users' => [
             'Ten' => 'users',
             'Slug' => 'users',
-            'id' => 19
+            'id' => 20
         ]
     ],
     'ReloadXML' => 1,

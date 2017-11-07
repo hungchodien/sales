@@ -2,145 +2,141 @@
 
 @extends('Admin.dashboard._layout_dashboard')
 
+@section('css_custom_page')
+    <link href="{{asset('asset_admin/css/index_tintuc.css')}}" rel="stylesheet">
+@endsection
+
 @section('title_dashboard_admin', 'Admin page')
 
 @section('content_dashboard_admin')
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tất Cả Tin Tức</h1>
+                <div class="page-header clear">
+                    <h1 class="title fl">Tất Cả Tin Tức</h1>
+                    <a class="jb_btn_insert_link fr" href="{{route('Create_News_Admin',Slug_tintuc)}}">Thêm tin mới</a>
+                </div>
+
             </div>
             <!-- /.col-lg-12 -->
         </div>
 
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-money fa-fw"></i> Payment Received
-                                <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                            </a>
-                        </div>
-                        <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                    </div>
-                    <!-- /.panel-body -->
+            <div class="col-xs-12">
+                <table id="page_tin_tuc" class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tiêu đề</th>
+                        <th>Trang thái</th>
+                        <th>Thumbnail</th>
+                        <th>#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data['Tintuc25Record'] as $key => $value )
+                        <tr>
+                            <td class="jb_input"><input class="checked_input_select" data-index = "{{$key}}" type="checkbox" value="{{$value['id']}}"></td>
+                            <td class="jb_tieude"><a href="{{route('Edit_News_Admin', [slug_tintuc, $value['id']])}}">
+                                    {{substr($value['TieuDe'], 0, 40).(strlen($value['TieuDe'])>= 40? '...': "")}}</a> </td>
+                            <td>
+                                @php
+                                if($value['Publish'] != 0){
+                                    if($value['Publish'] == 1 && $value['NoiBat'] == 0){
+                                        echo "công khai";
+                                    }else{
+                                        if($value['Publish'] == 1 && $value['NoiBat'] == 1){
+                                            echo "nỗi bật";
+                                        }else {
+                                            if($value['Publish'] == 2){
+                                                echo "only admin";
+                                            }
+                                        }
+                                    }
+                                }else{
+                                    echo "chưa công bố";
+                                }
+                                @endphp
+                            </td>
+                            <td><div class="jb_thumbnail" style="background-image: url('{{asset($value['Hinh'])}}');"></div> </td>
+                            <td><a class="remove_Record" data-href="{{route('DeleteRecord',$value['id'] )}}" href="#"><img src="{{asset('asset_admin/img/close.png')}}" alt="close"/> </a> </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                @php echo $data['Tintuc25Record']->render(); @endphp
+                <div id="ChucNang" class="Option">
+                    <label><input id="select_all_record" type="checkbox">Select All</label>
+                    <a id="status_off" href="#" class="status_off">tắt trạng thái</a>
                 </div>
             </div>
-            <!-- /.col-lg-8 -->
-            <div class="col-lg-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-money fa-fw"></i> Payment Received
-                                <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                            </a>
-                        </div>
-                        <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-            </div>
-            <!-- /.col-lg-4 -->
         </div>
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
+    <script>
+        $(document).ready(function(){
+            $("#select_all_record").click(function(){
+                if($(this).prop('checked')){
+                    var table_id =  "page_tin_tuc";
+                    $(".checked_input_select").each(function(){
+                        $(this).prop('checked', true);
+                    });
+                }else {
+                    var table_id =  "page_tin_tuc";
+                    $(".checked_input_select").each(function(){
+                        $(this).prop('checked', false);
+                    });
+                }
+
+            });
+        });
+        $('.remove_Record').click(function (index, element) {
+            var elememtn = element;
+            $.ajax({
+                type:'GET',
+                url: $(this).attr('data-href'),
+                contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+                dataType: 'json',
+                async: false,
+                data:{},
+                success: function(response) {
+                }
+            });
+            $(this).closest('tr').hide('slow', function(){ $(this).closest('tr').remove(); });
+            return false;
+        });
+        $("#status_off").click(function(){
+            var checked_variable = [];
+            $("#page_tin_tuc").find(".checked_input_select").each(function(){
+                if($(this).prop('checked'))
+                    checked_variable.push($(this).val());
+            });
+            var url = "{{route('UpdateStatusOff')}}";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url: url,
+                contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+                dataType: 'json',
+                data:{id: checked_variable},
+                success: function(response) {
+                    if(response.status === "ok"){
+                        alert("tắt trạng thái thành công");
+                    }else {
+                        alert("tắt trạng thái có lỗi");
+                    }
+                    return false;
+                }
+            });
+            event.preventDefault();
+        });
+    </script>
 @endsection
 
 
